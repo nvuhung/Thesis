@@ -48,32 +48,22 @@ public class PersistenceContext {
 
 	public Properties additionalProperties() {
 		Properties jpaProterties = new Properties();
-		jpaProterties
-				.put(PROPERTY_NAME_DATABASE_DIALECT, environment
-						.getRequiredProperty(PROPERTY_NAME_DATABASE_DIALECT));
-		jpaProterties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, environment
-				.getRequiredProperty(PROPERTY_NAME_HIBERNATE_FORMAT_SQL));
-		jpaProterties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, environment
-				.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
-		jpaProterties.put(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY, environment
-				.getRequiredProperty(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY));
-		jpaProterties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, environment
-				.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		jpaProterties.put(PROPERTY_NAME_DATABASE_DIALECT, environment.getRequiredProperty(PROPERTY_NAME_DATABASE_DIALECT));
+		jpaProterties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_FORMAT_SQL));
+		jpaProterties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
+		jpaProterties.put(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY));
+		jpaProterties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
 		return jpaProterties;
 	}
 
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		String driverClass = environment
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER);
+		String driverClass = environment.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER);
 		dataSource.setDriverClassName(driverClass);
-		dataSource.setUrl(environment
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-		dataSource.setUsername(environment
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-		dataSource.setPassword(environment
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+		dataSource.setUrl(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+		dataSource.setUsername(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+		dataSource.setPassword(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
 		return dataSource;
 	}
 
@@ -91,8 +81,7 @@ public class PersistenceContext {
 	}
 
 	@Bean
-	public PlatformTransactionManager transactionManager(
-			EntityManagerFactory emf) {
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
