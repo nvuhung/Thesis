@@ -6,8 +6,7 @@ import java.util.List;
 import com.estimating.entity.Customers;
 import com.estimating.model.MessageModel;
 
-public class CustomerValidationImpl extends AbstractBaseValidation implements
-		IValidationService {
+public class CustomerValidationImpl extends AbstractBaseValidation implements IValidationService {
 
 	@Override
 	public List<String> validation(MessageModel messageModel) {
