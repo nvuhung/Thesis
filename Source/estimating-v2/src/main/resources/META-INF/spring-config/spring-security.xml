@@ -19,7 +19,8 @@
 		<!-- PermitAll -->
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/homepage" access="permitAll" />
-
+		<intercept-url pattern="/customers/**" access="permitAll" />
+	
 		<!-- ROLE_ADMIN -->
 
 		<!-- ROLE_USER -->

@@ -13,12 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.util.Assert;
 
 @Entity
 @Table(name = "customers")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AttributeOverride(name = "id", column = @Column(name = "customer_id"))
+@JsonIgnoreProperties("department")
 public class Customers extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +34,9 @@ public class Customers extends BaseEntity {
 	@Embedded
 	private DateEmbedded date;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="department_id")
+	@JsonIgnore
 	private Departments department;
 	
 	public Customers() {
@@ -102,4 +106,12 @@ public class Customers extends BaseEntity {
 	public void setDepartment(Departments department) {
 		this.department = department;
 	}
+
+	@Override
+	public String toString() {
+		return "Customers [customerName=" + customerName + ", salary=" + salary
+				+ ", date=" + date + ", department=" + department + "]";
+	}
+	
+	
 }

@@ -2,6 +2,7 @@ package com.estimating.dao;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -58,10 +59,10 @@ public class DaoTest {
 		Assert.assertNotNull(department1);
 	}
 	
-	//@Test
+	@Test
 	public void saveCustomerTest() {
 		Departments department = departmentDao.findOneById(Long.parseLong("2"));
-		Customers customer1 = new Customers("customer2", new BigDecimal("10000"), department, date);
+		Customers customer1 = new Customers("customer3", new BigDecimal("10000"), department, date);
 		customerDao.create(customer1);
 		Assert.assertNotNull(customer1);
 	}
@@ -69,7 +70,7 @@ public class DaoTest {
 	/**
 	 * NOTE: To use laze loading, remember call getDepartment(or any entity) before end transaction in ...DaoImpl
 	 */
-	@Test
+	//@Test
 	public void testLoadLazy() {
 		// Find by id
 		//Customers customer = customerDao.findOneById(Long.parseLong("2"));
@@ -88,13 +89,22 @@ public class DaoTest {
 		System.out.println(user);
 		Assert.assertEquals("hung4", user.getUsername());
 	}
+
 	//@Test
-	
 	public void loadResourcesTest() {
     	ResourcesDao resources = (ResourcesDao)context.getBean("resourcesDao");
     	Assert.assertNotNull(resources);
     	Assert.assertNotNull(resources.getNameQuery().get("findUserByUserName"));
     	// Assert.assertEquals("SELECT * FROM users WHERE username = ?", resources.getNameQuery().get("findUserByUserName"));
+	}
+	
+	@Test
+	public void findAllCustomerTest() {
+		List<Customers> customers = customerDao.findAll();
+		for (Customers customer : customers) {
+			System.out.println(customer);
+		}
+		Assert.assertNotNull(customers);
 	}
 }
 

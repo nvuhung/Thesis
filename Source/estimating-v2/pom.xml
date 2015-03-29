@@ -28,6 +28,7 @@
 		<junit.version>4.11</junit.version>
 		<gson.version>2.2.4</gson.version>
 		<jackson.version>1.9.13</jackson.version>
+		<jackson.core.version>2.5.1</jackson.core.version>
 		<joda-time>2.3</joda-time>
 		<jasperreports.version>5.5.0</jasperreports.version>
 		<commons.logging.version>1.2</commons.logging.version>
@@ -200,6 +201,17 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.core.version}</version>
 		</dependency>
 
 		<!-- Joda Times -->

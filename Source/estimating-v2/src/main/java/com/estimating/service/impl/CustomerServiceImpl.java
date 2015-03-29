@@ -1,28 +1,19 @@
 package com.estimating.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import com.estimating.entity.Customers;
-import com.estimating.model.MessageModel;
 import com.estimating.service.core.AbstractBaseService;
 import com.estimating.service.core.ICustomerService;
-import com.estimating.validation.IValidationService;
 
 @Service
-public class CustomerServiceImpl extends AbstractBaseService implements
-		ICustomerService {
+public class CustomerServiceImpl extends AbstractBaseService<Customers> implements ICustomerService {
 
 	@Override
 	public void create(Customers customer) {
-		IValidationService validate = validationService.get("customerValidate");
-		MessageModel messageModel = new MessageModel();
-		messageModel.put(getEstimatingConstants().getVALIDATION_OBJECT(),
-				customer);
-		List<String> validateResult = validate.validation(messageModel);
-		Assert.isNull(validateResult, "Error when validate");
 		customerDao.create(customer);
 	}
 
@@ -34,6 +25,31 @@ public class CustomerServiceImpl extends AbstractBaseService implements
 	@Override
 	public Customers findOneByName(String name) {
 		return findOneByName(name);
+	}
+
+	@Override
+	public void update(Customers entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Customers entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Customers> findAll() {
+		return customerDao.findAll();
+	}
+	
+	@Override
+	public List<String> validation(Customers customer) {
+		List<String> result = new ArrayList<String>();
+		if (customer.getSalary().equals(0))
+			result.add("Salary must be bigger than 0");
+		return result;
 	}
 
 }

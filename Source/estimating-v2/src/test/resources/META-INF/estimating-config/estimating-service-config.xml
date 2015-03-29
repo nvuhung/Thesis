@@ -5,7 +5,6 @@
 
 	<bean id="baseService" class="com.estimating.service.core.AbstractBaseService" abstract="true" >
 		<property name="estimatingConstants" ref="estimatingConstants"></property>
-		<property name="validationService" ref="validationServiceMap" />
 	</bean>
 	
 	<!-- Property -->

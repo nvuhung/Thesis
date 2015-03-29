@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 
 import com.estimating.utils.EstimatingConstants;
 
-public abstract class AbstractBaseDao<T> {
+public abstract class AbstractBaseDao<T> implements IBaseDao<T> {
 
 	private ResourcesDao resourcesDao;
 	private Class<T> entityClass;
